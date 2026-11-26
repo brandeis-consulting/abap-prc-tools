@@ -5,6 +5,8 @@
 *& remaining texts of the run of 18.11. (NO_ENTRY)
 *& Iteration 12 (19.11.2026): Standard ABAP jobs (job scheduler, test
 *& run job), tools repository
+*& Iteration 13 (19.11.2026): job log and authorization of the run job,
+*& helper reports
 *&---------------------------------------------------------------------*
     " messages ZPRC_PROCESS_MESSAGE 026-028 (73 characters at most)
     add( en = `Process class &1 does not allow simulation; nothing was processed`
@@ -67,3 +69,15 @@
     add( en = `ABAP-PRC: Translate short texts EN -> DE via LXE` de = `ABAP-PRC: Kurztexte EN -> DE über LXE übersetzen` ).
     add( en = `ABAP-PRC Tools: Test and demo data` de = `ABAP-PRC Tools: Test- und Demodaten` ).
     add( en = `ABAP-PRC Tools: Delete all test and demo data` de = `ABAP-PRC Tools: Alle Test- und Demodaten löschen` ).
+
+    " job log and authorization of the run job (19.11.): messages ZPRC_RUN 012-014 (73 characters at most)
+    add( en = `Run &1 of application &2: &3 objects selected`
+         de = `Run &1 der Anwendung &2: &3 Objekte selektiert` ).
+    add( en = `Run &1 finished` de = `Run &1 beendet` ).
+    add( en = `No authorization to start runs of application &1`
+         de = `Keine Berechtigung, Runs der Anwendung &1 zu starten` ).
+    " helper reports of the tools repository (19.11.)
+    add( en = `Copy package attributes from template package (TDEVC)`
+         de = `Paketattribute aus Vorlagepaket kopieren (TDEVC)` ).
+    add( en = `ABAP-PRC: Set ABAP language version of packages (TDEVC)`
+         de = `ABAP-PRC: ABAP-Sprachversion von Paketen setzen (TDEVC)` ).
