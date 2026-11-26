@@ -1,0 +1,10 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: RPT4/ZPRC_TRANSLATE_DE/TITLE, maxlen=70
+msgid "ABAP-PRC: Translate short texts EN -> DE via LXE"
+msgstr "ABAP-PRC: Kurztexte EN -> DE über LXE übersetzen"

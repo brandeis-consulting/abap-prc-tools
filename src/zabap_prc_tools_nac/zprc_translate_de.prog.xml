@@ -17,18 +17,6 @@
      <LENGTH>48</LENGTH>
     </item>
    </TPOOL>
-   <I18N_TPOOL>
-    <item>
-     <LANGUAGE>D</LANGUAGE>
-     <TEXTPOOL>
-      <item>
-       <ID>R</ID>
-       <ENTRY>ABAP-PRC: Kurztexte EN -&gt; DE über LXE übersetzen</ENTRY>
-       <LENGTH>70</LENGTH>
-      </item>
-     </TEXTPOOL>
-    </item>
-   </I18N_TPOOL>
   </asx:values>
  </asx:abap>
 </abapGit>
