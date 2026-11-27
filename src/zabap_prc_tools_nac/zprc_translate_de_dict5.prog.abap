@@ -7,6 +7,9 @@
 *& run job), tools repository
 *& Iteration 13 (19.11.2026): job log and authorization of the run job,
 *& helper reports
+*& Iteration 14 (27.11.2026): delivery rework (Fiori packages, manual
+*& content, calculation classes), demo action parameter, tools (git
+*& repair report with selection texts, findings table)
 *&---------------------------------------------------------------------*
     " messages ZPRC_PROCESS_MESSAGE 026-028 (73 characters at most)
     add( en = `Process class &1 does not allow simulation; nothing was processed`
@@ -81,3 +84,60 @@
          de = `Paketattribute aus Vorlagepaket kopieren (TDEVC)` ).
     add( en = `ABAP-PRC: Set ABAP language version of packages (TDEVC)`
          de = `ABAP-PRC: ABAP-Sprachversion von Paketen setzen (TDEVC)` ).
+
+    " delivery rework (27.11.): calculation class, Fiori packages, manual content
+    add( en = `ABAP-PRC: Link to the processed object (calc. exit)`
+         de = `ABAP-PRC: Link zum verarbeiteten Objekt (Berechnungs-Exit)` ).
+    add( en = `ABAP-PRC: Message text in the logon language (calc. exit)`
+         de = `ABAP-PRC: Meldungstext in Anmeldesprache (Berechnungs-Exit)` ).
+    add( en = `ABAP-PRC: Fiori apps (BSP) - ABAP Cloud` de = `ABAP-PRC: Fiori-Apps (BSP) - ABAP Cloud` ).
+    add( en = `ABAP-PRC Demo: Fiori apps (BSP) - ABAP Cloud` de = `ABAP-PRC Demo: Fiori-Apps (BSP) - ABAP Cloud` ).
+    add( en = `ABAP-PRC: Content installed manually (not in a repository)`
+         de = `ABAP-PRC: Manuell installierte Inhalte (nicht im Repository)` ).
+    add( en = `ABAP-PRC: Content installed manually - Standard ABAP`
+         de = `ABAP-PRC: Manuell installierte Inhalte - Standard ABAP` ).
+    " same packages with the original (German) description of 27.11. until renamed
+    add( en = `ABAP-PRC: Fiori-Apps (BSP) - ABAP Cloud` de = `ABAP-PRC: Fiori-Apps (BSP) - ABAP Cloud` ).
+    add( en = `ABAP-PRC Demo: Fiori-Apps (BSP) - ABAP Cloud` de = `ABAP-PRC Demo: Fiori-Apps (BSP) - ABAP Cloud` ).
+    add( en = `ABAP-PRC: Manuell zu installierende Inhalte (nicht im Repo)`
+         de = `ABAP-PRC: Manuell installierte Inhalte (nicht im Repository)` ).
+    add( en = `ABAP-PRC: Manuell zu installierende Inhalte - Standard ABAP`
+         de = `ABAP-PRC: Manuell installierte Inhalte - Standard ABAP` ).
+    " demo action parameter of the consistency check (ZA_PRC_DEMO_CHECKPARAMSELOPT)
+    add( en = `Action parameter to initiate the check run` de = `Aktionsparameter zum Starten des Prüflaufs` ).
+    add( en = `Parameter to initiate the check run` de = `Parameter zum Starten des Prüflaufs` ).
+    " tools: git repair, cleanup report
+    add( en = `ABAP-PRC Tools: Git repair (inconsistencies after abapGit)`
+         de = `ABAP-PRC Tools: Git-Reparatur (Inkonsistenzen nach abapGit)` ).
+    add( en = `ABAP-PRC Tools: Git-Repair (Inkonsistenzen nach abapGit)`
+         de = `ABAP-PRC Tools: Git-Reparatur (Inkonsistenzen nach abapGit)` ).
+    add( en = `ABAP-PRC Tools: Clean up orphaned objects` de = `ABAP-PRC Tools: Verwaiste Objekte aufräumen` ).
+    add( en = `ABAP-PRC Tools: verwaiste Objekte aufraeumen` de = `ABAP-PRC Tools: Verwaiste Objekte aufräumen` ).
+    add( en = `ABAP-PRC: Findings of the git repair report` de = `ABAP-PRC: Befunde des Git-Reparatur-Reports` ).
+    " git repair: text symbols and selection texts (30 characters at most)
+    add( en = `Object set` de = `Objektmenge` ).
+    add( en = `Git problems` de = `Git-Probleme` ).
+    add( en = `Follow-up tasks and tool` de = `Nacharbeiten und Werkzeug` ).
+    add( en = `Repair` de = `Bereinigung` ).
+    add( en = `Packages (incl. subpackages)` de = `Pakete (inkl. Unterpakete)` ).
+    add( en = `Name patterns` de = `Namensmuster` ).
+    add( en = `TADIR entry without object` de = `TADIR-Eintrag ohne Objekt` ).
+    add( en = `Source without TADIR entry` de = `Quelle ohne TADIR-Eintrag` ).
+    add( en = `Object without package` de = `Objekt ohne Paket` ).
+    add( en = `Language version '-'` de = `Sprachversion '-'` ).
+    add( en = `Worklist entry without TADIR` de = `Inaktiv-Eintrag ohne TADIR` ).
+    add( en = `Service group without hash` de = `Service-Gruppe ohne Hash` ).
+    add( en = `Lock without request entry` de = `Sperre ohne Auftragseintrag` ).
+    add( en = `Binding not activated` de = `Binding nicht aktiviert` ).
+    add( en = `Service group not published` de = `Gruppe nicht veröffentlicht` ).
+    add( en = `No SU24 default values` de = `Keine SU24-Vorschlagswerte` ).
+    add( en = `Tool: CDS/RAP to worklist` de = `Werkzeug: CDS/RAP in Liste` ).
+    add( en = `Target package (NO_PACKAGE)` de = `Zielpaket (NO_PACKAGE)` ).
+    add( en = `Language version (LANG_DASH)` de = `Sprachversion (LANG_DASH)` ).
+    add( en = `Repair all rows` de = `Alle Zeilen bereinigen` ).
+    add( en = `Test run` de = `Testlauf` ).
+    add( en = `No ALV (log only)` de = `Ohne ALV (nur Protokoll)` ).
+    " launchpad app descriptor items generated from the manifests (not in a repository)
+    add( en = `An SAP Fiori application.` de = `Eine SAP-Fiori-Anwendung.` ).
+    add( en = `Show and manage` de = `Anzeigen und verwalten` ).
+    add( en = `Process Recovery Center` de = `Process Recovery Center` ).

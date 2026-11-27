@@ -20,17 +20,21 @@
 *&     2. prefix rules ("DCL for ..." -> "DCL für ...")
 *&     3. technical names (no blank, upper case) are copied unchanged
 *& - P_OVWR replaces existing German texts that have a dictionary entry;
-*&   texts without an entry are left as they are
+*&   texts without an entry are left as they are. Identical texts are
+*&   not written again (SAME), differing ones are reported (CHANGED,
+*&   INFO shows the current text)
 *& - Upper case is only applied if the English source is upper case,
 *&   too (the LXE flag is set for mixed-case DDLX/SRVD texts as well)
 *& - In update mode the texts are read with READ_ONLY = space: the
 *&   object specific LXE readers (CLAS, TLGS, VALU, ...) only then build
 *&   the key mapping their writers need
 *& - P_TEST only shows what would happen
+*& - P_NODISP suppresses the ALV (for SUBMIT from tests); the results
+*&   are in table ZPRC_TRL_RESULT
 *& - Each run replaces the content of table ZPRC_TRL_RESULT
 *&
-*& Status: TRANSLATED / SIMULATED, EXISTS, NO_ENTRY, TOO_LONG, SKIPPED,
-*&         ERROR
+*& Status: TRANSLATED / SIMULATED, CHANGED, SAME, EXISTS, NO_ENTRY,
+*&         TOO_LONG, SKIPPED, ERROR
 *&---------------------------------------------------------------------*
 REPORT zprc_translate_de.
 
@@ -38,10 +42,11 @@ TABLES: tadir, tdevc.
 
 SELECT-OPTIONS s_root FOR tdevc-devclass NO INTERVALS OBLIGATORY.
 SELECT-OPTIONS s_type FOR tadir-object.
-PARAMETERS: p_slang TYPE lxeisolang DEFAULT 'enUS' OBLIGATORY,
-            p_tlang TYPE lxeisolang DEFAULT 'deDE' OBLIGATORY,
-            p_ovwr  AS CHECKBOX DEFAULT space,
-            p_test  AS CHECKBOX DEFAULT space.
+PARAMETERS: p_slang  TYPE lxeisolang DEFAULT 'enUS' OBLIGATORY,
+            p_tlang  TYPE lxeisolang DEFAULT 'deDE' OBLIGATORY,
+            p_ovwr   AS CHECKBOX DEFAULT space,
+            p_test   AS CHECKBOX DEFAULT space,
+            p_nodisp AS CHECKBOX DEFAULT space.
 
 CLASS lcl_translator DEFINITION FINAL.
   PUBLIC SECTION.
@@ -209,6 +214,7 @@ CLASS lcl_translator IMPLEMENTATION.
         CONTINUE.
       ENDIF.
 
+      DATA(lv_current) = CONV string( <ls_pair>-t_text ).
       DATA(ls_result) = VALUE ty_result( object   = i_object
                                          obj_name = i_obj_name
                                          lxe_type = is_colob-objtype
@@ -216,9 +222,9 @@ CLASS lcl_translator IMPLEMENTATION.
                                          textkey  = <ls_pair>-textkey
                                          max_len  = <ls_pair>-unitmlt
                                          source   = lv_source
-                                         target   = CONV string( <ls_pair>-t_text ) ).
+                                         target   = lv_current ).
 
-      IF <ls_pair>-t_text IS NOT INITIAL AND mv_overwrite = abap_false.
+      IF lv_current IS NOT INITIAL AND mv_overwrite = abap_false.
         ls_result-status = 'EXISTS'.
         APPEND ls_result TO mt_result.
         CONTINUE.
@@ -247,7 +253,19 @@ CLASS lcl_translator IMPLEMENTATION.
         CONTINUE.
       ENDIF.
 
-      ls_result-status = COND #( WHEN mv_test = abap_true THEN 'SIMULATED' ELSE 'TRANSLATED' ).
+      " overwrite mode: identical texts are not written again, differing ones are reported
+      IF lv_current IS NOT INITIAL.
+        IF lv_current = lv_target.
+          ls_result-status = 'SAME'.
+          APPEND ls_result TO mt_result.
+          CONTINUE.
+        ENDIF.
+        ls_result-info = |Current: { lv_current }|.
+      ENDIF.
+
+      ls_result-status = COND #( WHEN lv_current IS NOT INITIAL THEN 'CHANGED'
+                                 WHEN mv_test = abap_true     THEN 'SIMULATED'
+                                 ELSE 'TRANSLATED' ).
       APPEND ls_result TO mt_result.
 
       <ls_pair>-t_text = lv_target.
@@ -272,7 +290,8 @@ CLASS lcl_translator IMPLEMENTATION.
       TABLES
         lt_pcx_s1 = lt_write.
     IF lv_pstatus = 'F'.
-      LOOP AT mt_result ASSIGNING FIELD-SYMBOL(<ls_res>) FROM lv_first WHERE status = 'TRANSLATED'.
+      LOOP AT mt_result ASSIGNING FIELD-SYMBOL(<ls_res>) FROM lv_first
+           WHERE status = 'TRANSLATED' OR status = 'CHANGED'.
         <ls_res>-status = 'ERROR'.
         <ls_res>-info   = |Write: { lv_err }|.
       ENDLOOP.
@@ -411,4 +430,6 @@ START-OF-SELECTION.
     go_translator->run( gs_root-low ).
   ENDLOOP.
   go_translator->save( ).
-  go_translator->display( ).
+  IF p_nodisp = abap_false.
+    go_translator->display( ).
+  ENDIF.

@@ -7,4 +7,4 @@ msgstr ""
 
 #: RPT4/ZPRC_SET_PKG_LANG_VERSION/TITLE, maxlen=70
 msgid "ABAP-PRC: Set ABAP language version of packages (TDEVC)"
-msgstr ""
+msgstr "ABAP-PRC: ABAP-Sprachversion von Paketen setzen (TDEVC)"

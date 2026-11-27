@@ -7,4 +7,4 @@ msgstr ""
 
 #: RPT4/ZPRC_SET_PKG_LANGU_VERSION/TITLE, maxlen=70
 msgid "Copy package attributes from template package (TDEVC)"
-msgstr ""
+msgstr "Paketattribute aus Vorlagepaket kopieren (TDEVC)"
