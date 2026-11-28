@@ -8,3 +8,31 @@ msgstr ""
 #: RPT4/ZPRC_TRANSLATE_DE/TITLE, maxlen=70
 msgid "ABAP-PRC: Translate short texts EN -> DE via LXE"
 msgstr "ABAP-PRC: Kurztexte EN -> DE über LXE übersetzen"
+
+#: RPT4/ZPRC_TRANSLATE_DE/SELECT P_NODISP, maxlen=30
+msgid "No ALV output"
+msgstr "Keine ALV-Ausgabe"
+
+#: RPT4/ZPRC_TRANSLATE_DE/SELECT S_TYPE, maxlen=30
+msgid "Object type"
+msgstr "Objekttyp"
+
+#: RPT4/ZPRC_TRANSLATE_DE/SELECT P_OVWR, maxlen=30
+msgid "Overwrite existing texts"
+msgstr "Vorhandene Texte überschreiben"
+
+#: RPT4/ZPRC_TRANSLATE_DE/SELECT S_ROOT, maxlen=30
+msgid "Root package"
+msgstr "Wurzelpaket"
+
+#: RPT4/ZPRC_TRANSLATE_DE/SELECT P_SLANG, maxlen=30
+msgid "Source language"
+msgstr "Quellsprache"
+
+#: RPT4/ZPRC_TRANSLATE_DE/SELECT P_TLANG, maxlen=30
+msgid "Target language"
+msgstr "Zielsprache"
+
+#: RPT4/ZPRC_TRANSLATE_DE/SELECT P_TEST, maxlen=30
+msgid "Test mode"
+msgstr "Testmodus"

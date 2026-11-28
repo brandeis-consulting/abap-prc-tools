@@ -3,7 +3,7 @@
 *&---------------------------------------------------------------------*
 *& Translates the short texts of the ABAP Processing Center (EN -> DE)
 *& via the LXE API (the same API SE63 uses). Internal tool of the
-*& private repository ABAP-PRC-TOOLS (package ZABAP_PRC_TOOLS_NAC).
+*& repository ABAP-PRC-TOOLS (package ZABAP_PRC_TOOLS_NAC).
 *&
 *& Defaults: run it directly - all object types of core, test, demo and
 *& tools repository, missing German texts are filled, existing ones kept.
@@ -177,7 +177,7 @@ CLASS lcl_translator IMPLEMENTATION.
 
   METHOD translate_lxe_object.
     DATA lt_pairs   TYPE STANDARD TABLE OF lxe_pcx_s1.
-    DATA lt_write   TYPE STANDARD TABLE OF lxe_pcx_s1.
+    DATA lv_changed TYPE abap_bool.
     DATA lv_pstatus TYPE lxestatprc.
     DATA lv_err     TYPE lxestring.
     DATA lv_target  TYPE string.
@@ -269,13 +269,16 @@ CLASS lcl_translator IMPLEMENTATION.
       APPEND ls_result TO mt_result.
 
       <ls_pair>-t_text = lv_target.
-      APPEND <ls_pair> TO lt_write.
+      lv_changed = abap_true.
     ENDLOOP.
 
-    IF mv_test = abap_true OR lt_write IS INITIAL.
+    IF mv_test = abap_true OR lv_changed = abap_false.
       RETURN.
     ENDIF.
 
+    " always write the complete set of text pairs: for some object types
+    " (DTEL, program texts, UIAD) the writer replaces the whole text set,
+    " so writing only the changed pairs would delete the other German texts
     CLEAR: lv_pstatus, lv_err.
     CALL FUNCTION 'LXE_OBJ_TEXT_PAIR_WRITE'
       EXPORTING
@@ -288,7 +291,7 @@ CLASS lcl_translator IMPLEMENTATION.
         pstatus   = lv_pstatus
         err_msg   = lv_err
       TABLES
-        lt_pcx_s1 = lt_write.
+        lt_pcx_s1 = lt_pairs.
     IF lv_pstatus = 'F'.
       LOOP AT mt_result ASSIGNING FIELD-SYMBOL(<ls_res>) FROM lv_first
            WHERE status = 'TRANSLATED' OR status = 'CHANGED'.

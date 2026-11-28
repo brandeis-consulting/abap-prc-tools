@@ -10,6 +10,9 @@
 *& Iteration 14 (27.11.2026): delivery rework (Fiori packages, manual
 *& content, calculation classes), demo action parameter, tools (git
 *& repair report with selection texts, findings table)
+*& Iteration 15 (28.11.2026): release 0.2.0 - completed English texts
+*& (field labels, test data elements, selection texts, job texts,
+*& authorization objects)
 *&---------------------------------------------------------------------*
     " messages ZPRC_PROCESS_MESSAGE 026-028 (73 characters at most)
     add( en = `Process class &1 does not allow simulation; nothing was processed`
@@ -141,3 +144,45 @@
     add( en = `An SAP Fiori application.` de = `Eine SAP-Fiori-Anwendung.` ).
     add( en = `Show and manage` de = `Anzeigen und verwalten` ).
     add( en = `Process Recovery Center` de = `Process Recovery Center` ).
+
+    " release 0.2.0 (28.11.): field labels of the message severity (10/20/55 characters at most)
+    add( en = `Severity` de = `Schweregrad` de_short = `Schweregr.` ).
+    add( en = `Severity Code` de = `Schweregrad-Code` ).
+    add( en = `Sev. Code` de = `Schw.-Code` ).
+    " data elements of the manual test T3 (test repository)
+    add( en = `ABAP-PRC Test: syntax error in handler (manual test T3)`
+         de = `ABAP-PRC Test: Syntaxfehler im Handler (manueller Test T3)` ).
+    add( en = `ABAP-PRC Test: syntax error in process (manual test T3)`
+         de = `ABAP-PRC Test: Syntaxfehler im Prozess (manueller Test T3)` ).
+    add( en = `Syntax Handler` de = `Syntax-Handler` ).
+    add( en = `Syntax Process` de = `Syntax-Prozess` ).
+    add( en = `Test Syntax Error Handler` de = `Test Syntaxfehler-Handler` ).
+    add( en = `Test Syntax Error Process` de = `Test Syntaxfehler-Prozess` ).
+    add( en = `Handler` de = `Handler` ).
+    " selection texts of ZPRC_TRANSLATE_DE (30 characters at most)
+    add( en = `No ALV output` de = `Keine ALV-Ausgabe` ).
+    add( en = `Overwrite existing texts` de = `Vorhandene Texte überschreiben` ).
+    add( en = `Source language` de = `Quellsprache` ).
+    add( en = `Target language` de = `Zielsprache` ).
+    add( en = `Test mode` de = `Testmodus` ).
+    add( en = `Root package` de = `Wurzelpaket` ).
+    add( en = `Object type` de = `Objekttyp` ).
+    " job catalog entries and templates with the area prefix (same text in both)
+    add( en = `ABAP-PRC Demo: Service Contract Adjustment Run`
+         de = `ABAP-PRC Demo: Anpassungslauf für Serviceverträge` ).
+    add( en = `ABAP-PRC Demo: BAPIs in Jobs - without ABAP-PRC`
+         de = `ABAP-PRC Demo: BAPIs in Jobs - ohne ABAP-PRC` ).
+    add( en = `ABAP-PRC Demo: BAPIs in Jobs - with ABAP-PRC`
+         de = `ABAP-PRC Demo: BAPIs in Jobs - mit ABAP-PRC` ).
+    " authorization objects
+    add( en = `ABAP-PRC: Process` de = `ABAP-PRC: Prozess` ).
+    add( en = `ABAP-PRC: Run Application` de = `ABAP-PRC: Run-Anwendung` ).
+    " demo packages in Standard ABAP with the prefix ABAP-PRC Demo (60 characters at most)
+    add( en = `ABAP-PRC Demo: BAPI & Jobs - BAPIs, tables, messages`
+         de = `ABAP-PRC Demo: BAPI & Jobs - BAPIs, Tabellen, Meldungen` ).
+    add( en = `ABAP-PRC Demo: BAPI & RAP - BAPIs, tables, messages`
+         de = `ABAP-PRC Demo: BAPI & RAP - BAPIs, Tabellen, Meldungen` ).
+    add( en = `ABAP-PRC Demo: BAPI & RAP 2 - BAPI as persistence`
+         de = `ABAP-PRC Demo: BAPI & RAP 2 - BAPI als Persistenz` ).
+    add( en = `ABAP-PRC Demo: BAPI & RAP 3 - Post-processing in same LUW`
+         de = `ABAP-PRC Demo: BAPI & RAP 3 - Folgebeleg in derselben LUW` ).
